@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -31,6 +32,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         public TextView textView1;
         public ImageView imageView;
         public ImageView background;
+        public RatingBar score;
 
     }
 
@@ -63,6 +65,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             holder.textView1 = (TextView) view.findViewById(R.id.team_name);
             holder.imageView = view.findViewById(R.id.team_icon);
             holder.background = view.findViewById(R.id.imageView2);
+            holder.score = view.findViewById(R.id.ratingBar);
             view.setTag(holder);
 
         } else {
@@ -95,7 +98,8 @@ public class ProductAdapter extends ArrayAdapter<Product> {
     }
 
     public void populateForPerson(ViewHolder holder, Product person, int position) {
-        holder.textView1.setText(person.getProductName());
+        String productName = person.getProductName();
+        holder.textView1.setText(productName);
         Glide.with(context)
                 .load("http://image.tmdb.org/t/p/w440_and_h660_face" + person.getProductPicture())
                 .into(holder.imageView);
@@ -104,6 +108,11 @@ public class ProductAdapter extends ArrayAdapter<Product> {
                 .apply(RequestOptions.bitmapTransform(new BlurTransformation(70, 5)))
                 .into(holder.background);
 
+        String voteText = person.getVote_average();
+        if (voteText.equals("0"))
+            holder.score.setVisibility(View.INVISIBLE);
+        else
+            holder.score.setRating(Float.parseFloat(voteText)/2);
     }
 
 

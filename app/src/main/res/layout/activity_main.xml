@@ -4,20 +4,257 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:screenOrientation="landscape"
     tools:context=".MainActivity">
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/leftMenu"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha=".60"
+            android:scaleType="centerCrop"
+            android:src="@drawable/menubackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:alpha=".75"
+            android:background="@drawable/bg_search"
+            android:drawableLeft="@android:drawable/ic_search_category_default"
+            android:hint="   Search"
+            android:layout_margin="1dp"
+            android:imeOptions="actionSearch"
+            android:maxLines="1"
+            android:nextFocusDown="@id/req3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/req1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="45dp"
+            android:gravity="center"
+            android:stateListAnimator="@null"
+            android:text="Upcoming"
+            android:nextFocusUp="@id/req2"
+            android:theme="@style/Button.Primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/req2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="45dp"
+            android:layout_weight="1"
+            android:alpha=".75"
+            android:gravity="center"
+            android:text="Top Rated"
+            android:theme="@style/Button.Primary"
+            android:nextFocusUp="@id/req3"
+            android:nextFocusDown="@id/req1"
+            app:layout_constraintBottom_toTopOf="@+id/req1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/req3"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="45dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Popular"
+            android:nextFocusUp="@id/editText"
+            android:nextFocusDown="@id/req2"
+            android:theme="@style/Button.Primary"
+            app:layout_constraintBottom_toTopOf="@+id/req2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ListView
-        android:id="@+id/genreList"
+        android:id="@+id/moviesLisview"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0sp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/leftMenu"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <requestFocus />
+    </ListView>
+
+
+    <ImageView
+        android:id="@+id/backdropImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:layout_marginBottom="1dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/moviesLisview"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="VectorDrawableCompat"
+        android:focusable="false"
+        />
+
+
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView"
+        android:layout_width="48dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:rotation="90"
+        android:scaleType="centerCrop"
+        android:src="@drawable/loading3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1"
+        android:focusable="false"/>
+
+
+    <ImageButton
+        android:id="@+id/button"
+        android:layout_width="130dp"
+        android:layout_height="86dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/detailImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/blackyoutube" />
+
+
+    <ImageView
+        android:id="@+id/blackBackground"
+        android:layout_width="1200dp"
+        android:layout_height="190dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/black"
+        android:alpha=".30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/moviesLisview"
+        app:layout_constraintTop_toTopOf="@+id/gifImageView" />
+
+    <TextView
+        android:id="@+id/storyView"
+        android:layout_width="675dp"
+        android:layout_height="140dp"
+        android:text="TextView"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="300dp"
+        android:focusable="false"
+        android:maxLines="1"
+        android:text="Name"
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:fontFamily="sans-serif-medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/background_light"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/detailImageView"
+        app:layout_constraintTop_toTopOf="@+id/detailImageView" />
+
+    <ImageView
+        android:id="@id/detailImageView"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:focusable="false"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/moviesLisview"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.495"
+        app:srcCompat="@drawable/deneme" />
+
+    <ImageView
+        android:id="@+id/ratingStar"
+        android:layout_width="55dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:srcCompat="@drawable/star" />
+
+    <TextView
+        android:id="@+id/rateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingStar"
+        app:layout_constraintEnd_toEndOf="@+id/ratingStar"
+        app:layout_constraintStart_toStartOf="@+id/ratingStar"
+        app:layout_constraintTop_toTopOf="@+id/ratingStar" />
+
+
+        <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"></FrameLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.volleyv2;
+package com.example.TmdbApp;
 
 import org.junit.Test;
 
